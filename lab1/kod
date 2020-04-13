@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+int main() {
+	string in = "data.csv";
+	ifstream fin;
+	fin.open(in);
+	string numb;
+	cout << "Enter the number(for example 933156729): ";
+	cin >> numb;
+	string date,numb1,numb2, min, sms;
+	int s, summ;
+	s = summ = 0;
+	double m = 0;
+	date=numb1=numb2 = min = sms = "";
+	while (!fin.eof()) {
+		getline(fin, date, ',');
+		getline(fin, numb1, ',');
+		getline(fin, numb2, ',');
+		getline(fin, min, ',');
+		getline(fin, sms, '\n');
+		if (numb1 == numb) {
+			m = stod(min);
+			m = ceil(m);
+			s = stoi(sms);
+			if (m >= 20) {
+				m -= 20;
+				summ = (m * 2) + (s * 2);
+			}
+			else{
+				summ = s * 2;
+			}
+
+
+		}
+	}
+	cout << "Costs: ";
+	cout << summ << endl;
+	system("pause");
+}
