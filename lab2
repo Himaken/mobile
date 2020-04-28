@@ -1,1 +1,41 @@
+#python
+o = open("text2.txt", "w")
+with open('text.txt') as f:
+    text = '\n'.join(' '.join(line.split()) for line in f)
+o.write(text)
+o.close()
+op = open("text2.txt", "r")
+summ = 0.0
+from array import *
+time = array('f',[0.0])
+byte = array('f',[0.0])
+count = 0
+line = op.readline()
+while line:
+	arr = line.replace(':', ' ').split()
+	if arr[7] == "192.168.250.3":
+		if arr[18] == "M":
+			summ = summ + float(arr[17]) * 1000000
+			time.insert(count,float(arr[2]))
+			byte.insert(count,float(arr[17])*1000000)
+			count +=1
+		else:
+			summ += float(arr[17])
+			time.insert(count,float(arr[2]))
+			byte.insert(count,float(arr[17]))
+			count +=1
+	line = op.readline()
+summ = (summ - 1024000) / 1024000 / 2
+print("Цена за трафик составила:" + str(summ) + " рублей")
+import matplotlib.pyplot as plt
+plt.bar(time, byte)
+plt.title("Трафик")
+plt.xlabel("Время")
+plt.ylabel("Объем трафика")
+plt.show()
+print("Нажмите Enter, чтобы закрыть exe")
+input()
+op.close()
+
+
 
